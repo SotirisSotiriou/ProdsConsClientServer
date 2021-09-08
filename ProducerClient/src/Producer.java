@@ -15,19 +15,17 @@ public class Producer {
 
 class ProducerThread extends Thread{
 	private int scale;
-	private Lock writerLock;
-	private Lock readerLock;
+	private Lock lock;
 	
 	public ProducerThread(int scale) {
 		this.scale = scale;
-		writerLock = new ReentrantLock();
-		readerLock = new ReentrantLock();
+		lock = new ReentrantLock();
 	}
 	
 	public void run() {
 		System.out.println("Producer started...");
 		while(true) {
-			writerLock.lock();
+			lock.lock();
 			try {
 				Client.out.println(Producer.DEFAULT_MSG);
 				String reply = Client.in.readLine();
@@ -40,7 +38,7 @@ class ProducerThread extends Thread{
 			} catch (IOException e) {
 				
 			} finally {
-				writerLock.unlock();				
+				lock.unlock();				
 			}
 			
 			

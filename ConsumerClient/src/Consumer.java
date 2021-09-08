@@ -15,19 +15,17 @@ public class Consumer {
 
 class ConsumerThread extends Thread{
 	private int scale;
-	private Lock writerLock;
-	private Lock readerLock;
+	private Lock lock;
 	
 	public ConsumerThread(int scale) {
 		this.scale = scale;
-		writerLock = new ReentrantLock();
-		readerLock = new ReentrantLock();
+		lock = new ReentrantLock();
 	}
 	
 	public void run() {
 		System.out.println("Consumer started...");
 		while(true) {
-			writerLock.lock();
+			lock.lock();
 			try {
 				Client.out.println(Consumer.DEFAULT_MSG);	
 				String reply = Client.in.readLine();
@@ -40,7 +38,7 @@ class ConsumerThread extends Thread{
 			} catch (IOException e) {
 				
 			} finally {
-				writerLock.unlock();				
+				lock.unlock();				
 			}
 			
 			try {
