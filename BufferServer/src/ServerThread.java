@@ -32,7 +32,6 @@ public class ServerThread extends Thread{
 				lock.lock();
 				try {
 					inmsg = in.readLine();	
-					System.out.println("Message from client: " + inmsg);
 				} finally {
 					lock.unlock();
 				}
