@@ -54,9 +54,9 @@ public class Buffer {
 				} catch(InterruptedException e) { }
 			}
 			data = contents[front];
-			System.out.println("A consumer removed an element from buffer. Buffer now has " + counter + " elements");
 			front = (front + 1) % size;
 			counter--;
+			System.out.println("A consumer removed an element from buffer. Buffer now has " + counter + " elements");
 			bufferFull.signalAll();
 		} finally {
 			lock.unlock();
