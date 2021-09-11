@@ -35,7 +35,7 @@ public class Client {
 		Producer[] prods = new Producer[noProds];
 		
 		for(int i=0; i<noProds; i++) {
-			prods[i] = new Producer(100);
+			prods[i] = new Producer(500);
 		}
 		
 	}
